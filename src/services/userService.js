@@ -87,7 +87,8 @@ export const findNearbyUsers = async (distance = 10, currentUserId = null) => {
       .filter(user => !currentUserId || user.$id !== currentUserId)
       .map(user => ({
         ...user,
-        distance: calculateDistance(latitude, longitude, user.lat, user.long)
+        distance: calculateDistance(latitude, longitude, user.lat, user.long),
+        geohash: geohash.encode(user.lat, user.long, precision) // Add user's geohash
       }))
       // Filtrer par distance maximale
       .filter(user => user.distance <= distance)
@@ -209,7 +210,8 @@ export const findNearbyUsersWithAdjacent = async (distance = 10, currentUserId =
       .filter(user => !currentUserId || user.$id !== currentUserId)
       .map(user => ({
         ...user,
-        distance: calculateDistance(latitude, longitude, user.lat, user.long)
+        distance: calculateDistance(latitude, longitude, user.lat, user.long),
+        geohash: geohash.encode(user.lat, user.long, precision) // Add user's geohash
       }))
       .filter(user => user.distance <= distance)
       .sort((a, b) => a.distance - b.distance);
