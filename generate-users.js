@@ -1,6 +1,7 @@
 // generate-users.js
 const { Client, Databases } = require('node-appwrite');
 const ngeohash = require('ngeohash');
+require('dotenv').config({ path: '.env.local' });
 
 // Configuration Appwrite
 const client = new Client()
@@ -14,7 +15,7 @@ const databases = new Databases(client);
 const DATABASE_ID = process.env.REACT_APP_DATABASE_ID;
 const USERS_COLLECTION_ID = process.env.REACT_APP_USERS_COLLECTION_ID;
 const GEOHASHES_COLLECTION_ID = process.env.REACT_APP_GEOHASHES_COLLECTION_ID;
-
+console.log(DATABASE_ID, USERS_COLLECTION_ID, GEOHASHES_COLLECTION_ID);
 // Position centrale (Paris)
 const CENTER_LAT = 48.8566;
 const CENTER_LON = 2.3522;
@@ -167,6 +168,59 @@ async function generateUsers() {
   }
 }
 
+// Fonction pour générer des utilisateurs spécifiquement aux bordures des geohash
+const generateBorderUsers = async () => {
+  // Position centrale (Paris)
+  const centerLat = 48.8566;
+  const centerLon = 2.3522;
+  
+  // Geohash central
+  const centerGeohash = ngeohash.encode(centerLat, centerLon, 6);
+  
+  // Obtenir les geohashes voisins
+  const neighbors = ngeohash.neighbors(centerGeohash);
+  
+  console.log(`Geohash central: ${centerGeohash}`);
+  console.log(`Geohashes voisins: ${neighbors.join(', ')}`);
+  
+  // Pour chaque voisin, créer un utilisateur très proche de la frontière
+  for (let i = 0; i < neighbors.length; i++) {
+    const neighborHash = neighbors[i];
+    
+    // Décoder le geohash voisin pour obtenir ses coordonnées
+    const neighborCoords = ngeohash.decode(neighborHash);
+    
+    // Créer un point très proche de la frontière avec le geohash central
+    const factor = 0.0005; // ~50 mètres
+    const latAdjust = (centerLat - neighborCoords.latitude) * 0.1 * factor;
+    const lonAdjust = (centerLon - neighborCoords.longitude) * 0.1 * factor;
+    
+    const userData = {
+      name: `Utilisateur Frontalier ${i+1}`,
+      bio: `Je suis situé juste à la frontière du geohash ${centerGeohash}`,
+      gender: Math.random() > 0.5 ? 'Homme' : 'Femme',
+      lat: neighborCoords.latitude + latAdjust,
+      long: neighborCoords.longitude + lonAdjust,
+      isBorderUser: true
+    };
+    
+    // Créer l'utilisateur
+    const newUser = await databases.createDocument(
+      DATABASE_ID,
+      USERS_COLLECTION_ID,
+      'unique()',
+      userData
+    );
+    
+    // Stocker ses geohashes
+    await storeUserGeohashes(newUser.$id, userData.lat, userData.long);
+    
+    console.log(`Utilisateur frontalier créé: ${userData.name} dans ${neighborHash}`);
+  }
+  
+  console.log('Utilisateurs frontaliers créés avec succès!');
+};
 
 // Exécuter la fonction
 generateUsers();
+generateBorderUsers();

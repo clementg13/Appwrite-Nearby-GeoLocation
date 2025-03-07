@@ -50,3 +50,51 @@
 .user-bio {
   color: #333;
 }
+
+.mode-button {
+  margin-left: 20px;
+  padding: 8px 16px;
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.mode-button.active {
+  background-color: #007bff;
+  color: white;
+  border-color: #0056b3;
+}
+
+.missed-users-warning {
+  background-color: #fff3cd;
+  border: 1px solid #ffeeba;
+  color: #856404;
+  padding: 12px;
+  margin: 15px 0;
+  border-radius: 4px;
+}
+
+.border-user {
+  border-left: 4px solid #ff9800 !important;
+  background-color: #fff8e1;
+}
+
+.border-badge {
+  display: inline-block;
+  background-color: #ff9800;
+  color: white;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  margin-top: 8px;
+}
+
+.search-info {
+  background-color: #e1f5fe;
+  border: 1px solid #b3e5fc;
+  color: #01579b;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 4px;
+}
+

@@ -8,6 +8,7 @@
     "@testing-library/react": "^16.2.0",
     "@testing-library/user-event": "^13.5.0",
     "appwrite": "^17.0.0",
+    "dotenv": "^16.4.7",
     "ngeohash": "^0.6.3",
     "node-appwrite": "^15.0.0",
     "react": "^19.0.0",
