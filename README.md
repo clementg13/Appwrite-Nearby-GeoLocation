@@ -58,7 +58,7 @@ Geohash is a hierarchical spatial data structure that converts 2D geographic coo
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-username/Appwrite-Nearby-GeoLocation.git
+git clone https://github.com/clementg13/Appwrite-Nearby-GeoLocation.git
 cd appwrite-geohash-demo
 ```
 
@@ -197,7 +197,7 @@ Geohash est une structure de données spatiale hiérarchique qui convertit les c
 
 1. **Cloner le dépôt**
 ```bash
-git clone https://github.com/your-username/Appwrite-Nearby-GeoLocation.git
+git clone https://github.com/clementg13/Appwrite-Nearby-GeoLocation.git
 cd appwrite-geohash-demo
 ```
 
