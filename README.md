@@ -16,6 +16,8 @@
 
 This application demonstrates how to implement geolocation-based user search with Appwrite, despite Appwrite 1.6 not having native geolocation queries. The solution uses Geohash encoding to efficiently find nearby users without having to calculate distances for all users in the database.
 
+![appwrite geohash demo](README/appwrite-geohash.png)
+
 ### 🌟 Features
 
 - Find users near a location using Geohash algorithm
@@ -25,6 +27,7 @@ This application demonstrates how to implement geolocation-based user search wit
 - Understand how Geohash improves geolocation queries
 - Support for different search radiuses with appropriate geohash precision
 
+![appwrite geohash extended demo](README/appwrite-geohash-extended.png)
 
 ### 💡 Understanding Geohash
 
@@ -155,6 +158,8 @@ npm start
 
 Cette application démontre comment implémenter une recherche d'utilisateurs basée sur la géolocalisation avec Appwrite, malgré le fait qu'Appwrite 1.6 ne dispose pas de requêtes de géolocalisation natives. La solution utilise l'encodage Geohash pour trouver efficacement les utilisateurs à proximité sans avoir à calculer les distances pour tous les utilisateurs de la base de données.
 
+![appwrite geohash demo](README/appwrite-geohash.png)
+
 ### 🌟 Fonctionnalités
 
 - Trouver des utilisateurs près d'une position en utilisant l'algorithme Geohash
@@ -164,6 +169,7 @@ Cette application démontre comment implémenter une recherche d'utilisateurs ba
 - Comprendre comment Geohash améliore les requêtes de géolocalisation
 - Support de différents rayons de recherche avec une précision Geohash appropriée
 
+![appwrite geohash extended demo](README/appwrite-geohash-extended.png)
 
 ### 💡 Comprendre Geohash
 
